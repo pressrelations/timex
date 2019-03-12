@@ -168,9 +168,6 @@ defmodule Timex.Interval do
       invalid_until?(until) ->
         {:error, :invalid_until}
 
-      Timex.compare(until, from) <= 0 ->
-        {:error, :invalid_until}
-
       :else ->
         %__MODULE__{
           from: from,

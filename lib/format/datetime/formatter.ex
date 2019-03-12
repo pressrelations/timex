@@ -483,7 +483,7 @@ defmodule Timex.Format.DateTime.Formatter do
   end
   def format_token(_locale, :week_mon, %{:year => year} = date, _modifiers, flags, width) do
     {:ok, jan1} = Date.new(year,1,1)
-    Timex.Interval.new(from: jan1, until: date)
+    Timex.Interval.new(from: jan1, until: date, right_open: false)
     |> Enum.reduce(0, fn d, acc ->
       case Timex.weekday(d) do
         1 -> acc+1
@@ -494,7 +494,7 @@ defmodule Timex.Format.DateTime.Formatter do
   end
   def format_token(_locale, :week_sun, %{:year => year} = date, _modifiers, flags, width) do
     {:ok, jan1} = Date.new(year,1,1)
-    Timex.Interval.new(from: jan1, until: date)
+    Timex.Interval.new(from: jan1, until: date, right_open: false)
     |> Enum.reduce(0, fn d, acc ->
       case Timex.weekday(d) do
         7 -> acc+1
